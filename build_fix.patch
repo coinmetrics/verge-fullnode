@@ -1,0 +1,14 @@
+diff --git a/src/db.h b/src/db.h
+index dc34298..72ca1e2 100644
+--- a/src/db.h
++++ b/src/db.h
+@@ -8,7 +8,9 @@
+ #include <map>
+ #include <string>
+ #include <vector>
++#define BOOST_NO_CXX11_SCOPED_ENUMS
+ #include <boost/filesystem.hpp>
++#undef BOOST_NO_CXX11_SCOPED_ENUMS
+ #include <db_cxx.h>
+ #include "sync.h"
+ #include "serialize.h"

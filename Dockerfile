@@ -50,7 +50,7 @@ RUN yum -y install \
 	openssl \
 	;
 
-COPY --from=builder /root/prefix/* /
+COPY --from=builder /root/prefix /usr
 
 RUN useradd -m -u 1000 -s /bin/bash runner
 USER runner

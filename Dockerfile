@@ -28,12 +28,27 @@ RUN set -ex; \
 	patch -p1 < /root/build_fix.patch; \
 	./autogen.sh; \
 	CPPFLAGS=-I/usr/include/libdb4 ./configure --disable-tests --with-daemon --with-gui=no --prefix=/root/prefix; \
-	make j$(nproc); \
+	make -j$(nproc); \
 	make install
 
 
 
 FROM centos:7
+
+RUN yum -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+RUN yum -y install \
+	boost-chrono \
+	boost-filesystem \
+	boost-program-options \
+	boost-system \
+	boost-thread \
+	libdb4-cxx \
+	libevent \
+	libpcap \
+	libseccomp \
+	miniupnpc \
+	openssl \
+	;
 
 COPY --from=builder /root/prefix/* /
 

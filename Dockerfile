@@ -23,7 +23,7 @@ ARG VERSION
 COPY build_fix.patch /root/build_fix.patch
 
 RUN set -ex; \
-	git clone --depth 1 -b ${VERSION} --recurse-submodules https://github.com/vergecurrency/VERGE.git /root/verge; \
+	git clone --depth 1 -b v${VERSION} --recurse-submodules https://github.com/vergecurrency/VERGE.git /root/verge; \
 	cd /root/verge; \
 	patch -p1 < /root/build_fix.patch; \
 	./autogen.sh; \

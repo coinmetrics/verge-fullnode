@@ -53,4 +53,4 @@ COPY --from=builder /root/prefix /usr
 RUN useradd -m -u 1000 -s /bin/bash runner
 USER runner
 
-ENTRYPOINT ["VERGEd"]
+ENTRYPOINT ["verged"]

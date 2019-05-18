@@ -11,6 +11,7 @@ RUN yum -y install \
 	libdb4-cxx-devel \
 	libevent-devel \
 	libseccomp-devel \
+	libtool \
 	make \
 	miniupnpc-devel \
 	openssl-devel \
@@ -20,14 +21,11 @@ RUN yum -y install \
 
 ARG VERSION
 
-COPY build_fix.patch /root/build_fix.patch
-
 RUN set -ex; \
 	git clone --depth 1 -b v${VERSION} --recurse-submodules https://github.com/vergecurrency/VERGE.git /root/verge; \
 	cd /root/verge; \
-	patch -p1 < /root/build_fix.patch; \
 	./autogen.sh; \
-	CPPFLAGS=-I/usr/include/libdb4 ./configure --disable-tests --with-daemon --with-gui=no --prefix=/root/prefix; \
+	CPPFLAGS=-I/usr/include/libdb4 ./configure --disable-tests --disable-wallet --with-daemon --with-gui=no --prefix=/root/prefix; \
 	make -j$(nproc); \
 	make install
 

@@ -25,7 +25,7 @@ RUN set -ex; \
 	git clone --depth 1 -b v${VERSION} --recurse-submodules https://github.com/vergecurrency/VERGE.git /root/verge; \
 	cd /root/verge; \
 	./autogen.sh; \
-	CPPFLAGS=-I/usr/include/libdb4 ./configure --disable-tests --disable-wallet --with-daemon --with-gui=no --prefix=/root/prefix; \
+	CPPFLAGS='-I/usr/include/libdb4 -fPIC' ./configure --disable-tests --disable-wallet --with-daemon --with-gui=no --prefix=/root/prefix; \
 	make -j$(nproc); \
 	make install
 

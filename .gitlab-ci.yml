@@ -7,6 +7,5 @@ docker_image:
   script:
   - ./build.sh
   tags:
-  - shared
   - linux
   - docker
